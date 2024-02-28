@@ -1,5 +1,5 @@
-package Entity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package tn.esprit.pi2024.Entity;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,7 +8,6 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -16,19 +15,20 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Reclamation implements Serializable {
+public class Task implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long requestId ;
-    private Long userId;
     private Long taskId;
-    private String Description ;
-    private String Reason;
-    private Status status;
-    private Date dateSubmitted;
+    private String description;
+    private String priority;
+    private Status status ;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateCreated;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateUpdated;
 
+    @ManyToOne
+    private User assignedUser;
 
 
 }
-

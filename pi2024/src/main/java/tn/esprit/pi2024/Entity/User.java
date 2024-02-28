@@ -1,7 +1,20 @@
 package Entity;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.scheduling.config.Task;
+
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+@Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+
 public class User implements Serializable {
 
 
@@ -19,5 +32,11 @@ public class User implements Serializable {
     @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+
+    @OneToMany(mappedBy = "user")
+    private List<Reclamation> reclamationRequests;
+
+    @OneToMany(mappedBy = "user")
+    private List<Tasks> tasks;
 
 }
