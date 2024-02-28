@@ -16,19 +16,14 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Reclamation implements Serializable {
+
+public class Comment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long requestId ;
+    private Long commentId;
+    private Long reclamationRequestId;
     private Long userId;
-    private Long taskId;
-    private String Description ;
-    private String Reason;
-    private Status status;
-    private Date dateSubmitted;
-    private Date dateUpdated;
-
-
+    private String commentText;
+    private Date datePosted;
 
 }
-
