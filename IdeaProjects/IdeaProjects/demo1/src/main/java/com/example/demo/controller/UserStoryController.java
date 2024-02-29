@@ -4,7 +4,9 @@ import com.example.demo.entity.UserStory;
 import com.example.demo.exceptions.UserStoryNotFoundException;
 import com.example.demo.repository.UserStoryRepository;
 import org.springframework.web.bind.annotation.*;
-
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 import java.util.List;
 
 @RestController
@@ -20,6 +22,7 @@ public class UserStoryController {
     }
     @PostMapping("/userstory")
     UserStory newUserStory(@RequestBody UserStory story) {
+        NotifyAssignedTo(story);
         return repository.save(story);
     }
     @GetMapping("/userstory/{id}")
@@ -33,6 +36,7 @@ public class UserStoryController {
 
         return repository.findById(id)
                 .map(story -> {
+                    NotifyAssignedTo(story);
                     story.setTitle(newUserStory.getTitle());
                     story.setDescription(newUserStory.getDescription());
                     story.setPriority(newUserStory.getPriority());
@@ -42,6 +46,15 @@ public class UserStoryController {
                     return repository.save(story);
                 })
                 .orElseThrow(() -> new UserStoryNotFoundException(id));
+    }
+    private void NotifyAssignedTo(@RequestBody UserStory newUserStory) {
+        Twilio.init(com.example.demo.env.Twilio.ACCOUNT_SID, com.example.demo.env.Twilio.AUTH_TOKEN);
+        String number = newUserStory.getAssigned_to().getNumber();
+        Message message = Message.creator(
+                        new PhoneNumber(com.example.demo.env.Twilio.PHONE_NUMBER),
+                        new PhoneNumber(number),
+                        "New User Story assigned to you! "+newUserStory.getTitle()+", Best of luck.")
+                .create();
     }
     @DeleteMapping("/userstory/{id}")
     void deleteUserStory(@PathVariable Long id) {
