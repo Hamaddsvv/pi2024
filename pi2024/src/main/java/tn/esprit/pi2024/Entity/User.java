@@ -1,10 +1,9 @@
-package Entity;
+package tn.esprit.pi2024.Entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.scheduling.config.Task;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -29,14 +28,13 @@ public class User implements Serializable {
     private boolean isActive;
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
-    @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
     @OneToMany(mappedBy = "user")
-    private List<Reclamation> reclamationRequests;
+    private List<Reclamation> reclamations;
 
-    @OneToMany(mappedBy = "user")
-    private List<Tasks> tasks;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "assignedUser")
+    private List<Task> tasks;
 
 }

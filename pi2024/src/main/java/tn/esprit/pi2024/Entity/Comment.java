@@ -1,5 +1,4 @@
-package Entity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package tn.esprit.pi2024.Entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,7 +7,6 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -25,5 +23,9 @@ public class Comment implements Serializable {
     private Long userId;
     private String commentText;
     private Date datePosted;
+
+
+    @ManyToOne
+    private Reclamation reclamation;
 
 }

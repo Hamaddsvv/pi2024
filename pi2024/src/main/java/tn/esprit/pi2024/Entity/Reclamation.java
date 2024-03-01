@@ -1,12 +1,10 @@
-package Entity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package tn.esprit.pi2024.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -17,9 +15,7 @@ import java.util.Set;
 public class Reclamation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long requestId ;
-    Long userId;
-    Long taskId;
+    Long reclamationId ;
     String Description ;
     String Reason;
     @Enumerated(EnumType.STRING)
