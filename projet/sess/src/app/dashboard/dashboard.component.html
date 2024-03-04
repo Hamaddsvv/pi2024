@@ -1,0 +1,31 @@
+<!-- dashboard.component.html -->
+
+<div class="dashboard-container">
+  <div class="dashboard-menu">
+    <h2>Dashboard</h2>
+
+    <div class="button-section">
+      <button mat-button (click)="toggleCardOptions()">Cartes</button>
+      <div *ngIf="isCardOptionsVisible">
+        <button mat-button routerLink="/card-list">Gérer Cartes</button>
+        <!-- Ajoutez d'autres boutons pour d'autres fonctionnalités dans le dashboard -->
+      </div>
+    </div>
+
+    <div class="button-section">
+      <button mat-button (click)="toggleOnlineSessionOptions()">Session</button>
+      <div *ngIf="isOnlineSessionOptionsVisible">
+        <button mat-button routerLink="/online-session">Gérer Online Session</button>
+        <!-- Ajoutez d'autres boutons pour d'autres fonctionnalités dans le dashboard -->
+      </div>
+    </div>
+    <div class="button-section">
+      <button mat-button routerLink="/tasks">Gérer Tâches</button>
+    </div>
+
+  </div>
+
+  <div class="dashboard-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="header">
+      <h2>Gérer les Sessions en Ligne</h2>
+      <button mat-button color="primary" (click)="showAddForm()">Ajouter</button>
+      <button mat-button color="primary" routerLink="/dashboard">Home</button>
+    </div>
+  
+    <div class="content">
+      <ul>
+        <li *ngFor="let session of sessions">
+          {{ session.name }} - {{ session.description }}
+          <button mat-icon-button color="accent" (click)="selectSession(session)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteSession(session)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </li>
+      </ul>
+  
+      <div class="session-form" *ngIf="showForm">
+        <form>
+          <mat-form-field>
+            <input matInput placeholder="Nom de la Session" [(ngModel)]="selectedSession.name" name="name" required>
+          </mat-form-field>
+  
+          <mat-form-field>
+            <textarea matInput placeholder="Description de la Session" [(ngModel)]="selectedSession.description" name="description" required></textarea>
+          </mat-form-field>
+  
+          <!-- Ajout des champs start_time et end_time -->
+          <mat-form-field>
+            <input matInput [matDatepicker]="pickerStart" placeholder="Date de début" [(ngModel)]="selectedSession.startTime" name="startTime" required>
+            <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+            <mat-datepicker #pickerStart></mat-datepicker>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <input matInput [matDatepicker]="pickerEnd" placeholder="Date de fin" [(ngModel)]="selectedSession.endTime" name="endTime" required>
+            <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+            <mat-datepicker #pickerEnd></mat-datepicker>
+        </mat-form-field>
+  
+          <button mat-raised-button color="primary" (click)="addSession()">Ajouter Session</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

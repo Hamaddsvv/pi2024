@@ -1,0 +1,21 @@
+/* dashboard.component.css */
+
+.dashboard-container {
+  display: flex;
+  width: 100%;
+}
+
+.dashboard-menu {
+  width: 200px; /* Ajustez la largeur selon vos besoins */
+  padding: 20px;
+  background-color: #f0f0f0; /* Ajoutez une couleur de fond si nécessaire */
+}
+
+.dashboard-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.button-section {
+  margin-bottom: 10px; /* Espace entre les sections de boutons */
+}
