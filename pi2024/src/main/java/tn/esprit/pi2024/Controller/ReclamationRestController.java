@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.pi2024.Entity.Reclamation;
 import tn.esprit.pi2024.Service.IReclamationService;
 
 
@@ -13,7 +14,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/reclamation")
-public class Reclamation {
+public class ReclamationRestController {
     IReclamationService reclamationService;
 
     // http://localhost:8089/tpfoyer/reclamation/retrieve-all-reclamations
