@@ -21,6 +21,7 @@ public class Task implements Serializable {
     private Long taskId;
     private String description;
     private String priority;
+    @Enumerated(EnumType.STRING)
     private Status status ;
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;

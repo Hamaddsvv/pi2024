@@ -3,8 +3,9 @@ package tn.esprit.pi2024.Controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
-import org.springframework.scheduling.config.Task;
+
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.pi2024.Entity.Task;
 import tn.esprit.pi2024.Service.ITaskService;
 
 import java.util.List;
