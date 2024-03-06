@@ -1,0 +1,37 @@
+<!-- card-list.component.html -->
+
+<div class="container">
+  <div class="header">
+    <h2>Liste des Cartes</h2>
+    <button mat-button color="primary" (click)="showAddForm()">Ajouter</button>
+    <button mat-button color="primary" routerLink="/dashboard">Home</button>
+  </div>
+
+  <div class="content">
+    <ul>
+      <li *ngFor="let card of pokerCards">
+        {{ card.name }} - {{ card.complexityValue }}
+        <button mat-icon-button color="accent" (click)="selectCard(card)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteCard(card)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </li>
+    </ul>
+
+    <div class="card-form" *ngIf="showForm">
+      <form>
+        <mat-form-field>
+          <input matInput placeholder="Nom de la carte" [(ngModel)]="selectedCard.name" name="name" required>
+        </mat-form-field>
+        
+        <mat-form-field>
+          <input matInput placeholder="Valeur de complexité" [(ngModel)]="selectedCard.complexityValue" name="complexityValue" required>
+        </mat-form-field>
+        
+        <button mat-raised-button color="primary" (click)="addCard()">Ajouter Carte</button>
+      </form>
+    </div>
+  </div>
+</div>

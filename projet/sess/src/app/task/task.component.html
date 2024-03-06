@@ -1,0 +1,7 @@
+<!-- task.component.html -->
+
+<div *ngFor="let task of tasks">
+    {{ task.name }}
+    <button mat-button color="primary" (click)="startTaskSession(task)">Session</button>
+  </div>
+  
